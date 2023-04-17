@@ -1,10 +1,10 @@
-import achievements from "~/assets/examples/achievements.png";
-import create from "~/assets/examples/create.png";
-import manage from "~/assets/examples/manage.png";
-import upcoming from "~/assets/examples/upcoming.png";
-import xp from "~/assets/examples/xp.png";
+import Image from 'next/image';
 
-import Image from "next/image";
+import achievements from '~/assets/examples/achievements.png';
+import create from '~/assets/examples/create.png';
+import manage from '~/assets/examples/manage.png';
+import upcoming from '~/assets/examples/upcoming.png';
+import xp from '~/assets/examples/xp.png';
 
 export default function Examples() {
   return (

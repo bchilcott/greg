@@ -18,15 +18,19 @@
     "lint:fix": "turbo lint:fix && manypkg fix",
     "type-check": "turbo type-check"
   },
-  "devDependencies": {
-    "prettier": "^2.8.7",
-    "prettier-plugin-tailwindcss": "^0.2.7",
-    "turbo": "latest",
-    "@greg/eslint-config": "*"
-  },
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@greg/eslint-config": "*",
+    "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
+    "@manypkg/cli": "^0.20.0",
+    "@types/prettier": "^2.7.2",
+    "eslint": "^8.37.0",
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.7",
+    "turbo": "^1.8.8",
+    "typescript": "^5.0.3"
+  },
   "packageManager": "yarn@1.22.10"
 }

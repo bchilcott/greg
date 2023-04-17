@@ -1,10 +1,11 @@
-import "~/styles/globals.css";
-import type { AppProps } from "next/app";
-import { api } from "~/utils/trpc";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Inter } from "next/font/google";
+import '~/styles/globals.css';
+import type { AppProps } from 'next/app';
+import { Inter } from 'next/font/google';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+import { api } from '~/utils/trpc';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 function App({ Component, pageProps }: AppProps) {
   return (

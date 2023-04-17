@@ -1,1 +1,1 @@
-module.exports = require("@greg/tailwind-config/postcss");
+module.exports = require('@greg/tailwind-config/postcss');

@@ -1,3 +1,3 @@
 export default function pog() {
-  return { hello: "test" };
+  return { hello: 'test' };
 }

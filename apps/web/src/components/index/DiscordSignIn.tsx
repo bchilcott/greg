@@ -1,6 +1,7 @@
-import { api } from "~/utils/trpc";
-import { signIn, signOut } from "next-auth/react";
-import { FaDiscord } from "react-icons/fa";
+import { signIn, signOut } from 'next-auth/react';
+import { FaDiscord } from 'react-icons/fa';
+
+import { api } from '~/utils/trpc';
 
 export default function DiscordSignIn() {
   const { data: session } = api.auth.getSession.useQuery();
@@ -11,12 +12,12 @@ export default function DiscordSignIn() {
       onClick={
         session
           ? () => void signOut()
-          : () => void signIn("discord", { callbackUrl: "/" })
+          : () => void signIn('discord', { callbackUrl: '/' })
       }
     >
       <span className="flex items-center gap-2">
         <FaDiscord className="text-xl" />
-        {session ? "Sign out" : "Sign in with Discord"}
+        {session ? 'Sign out' : 'Sign in with Discord'}
       </span>
     </button>
   );
