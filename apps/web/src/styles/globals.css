@@ -3,5 +3,19 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-950 text-white;
+  @apply bg-gray-950 text-gray-100 antialiased;
+}
+
+@layer utilities {
+  .clip-home-login {
+    clip-path: polygon(40% 0, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .bg-home-body {
+    background-image: linear-gradient(
+      120deg,
+      theme("colors.gray.900"),
+      theme("colors.gray.950") 80%
+    );
+  }
 }

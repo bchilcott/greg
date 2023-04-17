@@ -1,0 +1,26 @@
+{
+  "name": "@greg/api",
+  "version": "0.1.0",
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "main": "index.ts",
+  "files": [
+    "src"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@prisma/client": "^4.12.0",
+    "@trpc/server": "^10.19.1",
+    "@greg/db": "*",
+    "@greg/auth": "*",
+    "superjson": "^1.12.2",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "typescript": "^5.0.4",
+    "@greg/eslint-config": "*",
+    "@greg/ts-config": "*"
+  }
+}
