@@ -8,7 +8,12 @@
   "files": [
     "src"
   ],
-  "scripts": {},
+  "scripts": {
+    "clean": "git clean -xdf .next .turbo node_modules",
+    "lint": "eslint .",
+    "lint:fix": "yarn lint --fix",
+    "type-check": "tsc --noEmit"
+  },
   "dependencies": {
     "@greg/auth": "*",
     "@greg/db": "*",

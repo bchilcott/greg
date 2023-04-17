@@ -5,9 +5,9 @@
   "types": "./index.ts",
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf .turbo node_modules",
+    "clean": "git clean -xdf .next .turbo node_modules",
     "lint": "eslint .",
-    "lint:fix": "pnpm lint --fix",
+    "lint:fix": "yarn lint --fix",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
