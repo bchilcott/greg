@@ -1,5 +1,6 @@
 {
   "name": "@greg/web",
+  "description": "Discord component of the Greg mission planning app",
   "version": "0.1.0",
   "private": true,
   "scripts": {

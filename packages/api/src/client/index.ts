@@ -1,9 +1,9 @@
 import { createTRPCRouter } from '../server';
 import { authRouter } from './router/auth';
-import { postRouter } from './router/post';
+import { guildRouter } from './router/guild';
 
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  guild: guildRouter,
   auth: authRouter,
 });
 
