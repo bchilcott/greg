@@ -3,26 +3,23 @@ import type { Client, CommandInteraction, Interaction } from 'discord.js';
 import Commands from '../commands';
 
 export default function handleInteractionCreate(client: Client) {
-  client.on('interactionCreate', async (interaction: Interaction) => {
+  client.on('interactionCreate', (interaction: Interaction) => {
     if (interaction.isCommand() || interaction.isContextMenuCommand()) {
-      await handleSlashCommand(client, interaction);
+      handleSlashCommand(client, interaction);
     }
   });
 }
 
-async function handleSlashCommand(
-  client: Client,
-  interaction: CommandInteraction
-): Promise<void> {
-  const slashCommand = Commands.find((c) => c.name === interaction.commandName);
+function handleSlashCommand(client: Client, interaction: CommandInteraction) {
+  const slashCommand = Commands.find(
+    (c) => c.data.toJSON().name === interaction.commandName
+  );
   if (!slashCommand) {
     interaction
-      .reply({ content: 'test', ephemeral: true })
+      .reply({ content: 'No such command', ephemeral: true })
       .catch(console.error);
     return;
   }
-
-  await interaction.deferReply();
 
   slashCommand.run(client, interaction).catch(console.error);
 }

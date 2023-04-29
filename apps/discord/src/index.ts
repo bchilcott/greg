@@ -22,9 +22,11 @@ client.on('ready', async () => {
 
   const rest = new REST().setToken(TOKEN);
 
+  const data = Commands.map((cmd) => cmd.data.toJSON());
+
   await rest.put(
     Routes.applicationCommands(process.env.BOT_CLIENTID as string),
-    { body: Commands }
+    { body: data }
   );
 
   console.log(`Registered ${Commands.length} slash commands`);

@@ -5,9 +5,6 @@ import { api } from '~/utils/trpc';
 
 export default function DiscordSignIn() {
   const { data: session } = api.auth.getSession.useQuery();
-  const { data, mutate, isLoading } = api.guild.create.useMutation();
-
-  console.log(data);
 
   return (
     <>
@@ -23,17 +20,6 @@ export default function DiscordSignIn() {
           <FaDiscord className="text-xl" />
           {session ? 'Sign out' : 'Sign in with Discord'}
         </span>
-      </button>
-      <button
-        onClick={() =>
-          mutate({
-            guildDiscordId: '375271552624623617',
-            userDiscordId: '359005676212715523',
-          })
-        }
-        disabled={isLoading}
-      >
-        {isLoading ? 'loading...' : 'Do thing'}
       </button>
     </>
   );

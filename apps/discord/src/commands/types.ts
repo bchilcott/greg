@@ -1,13 +1,14 @@
 import type {
-  ChatInputApplicationCommandData,
   Client,
   CommandInteraction,
-  Message,
+  InteractionResponse,
+  SlashCommandBuilder,
 } from 'discord.js';
 
-export interface SlashCommand extends ChatInputApplicationCommandData {
+export interface SlashCommand {
+  data: Omit<SlashCommandBuilder, 'addSubcommandGroup' | 'addSubcommand'>;
   run: (
     client: Client,
     interaction: CommandInteraction
-  ) => Promise<Message<boolean> | undefined>;
+  ) => Promise<InteractionResponse<boolean> | undefined>;
 }

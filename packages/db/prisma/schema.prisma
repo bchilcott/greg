@@ -27,7 +27,8 @@ model Account {
   scope             String?
   id_token          String? // @db.Text
   session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -39,21 +40,23 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
 
 // User model with email, name, image and role - owned by the Greg application
 model User {
-  id            String        @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String?       @unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
-  accounts      Account[]
-  sessions      Session[]
-  memberOf      GuildMember[]
+
+  accounts Account[]
+  sessions Session[]
+  memberOf GuildMember[]
 }
 
 model Guild {
@@ -70,8 +73,7 @@ model Guild {
 }
 
 model GuildMember {
-  id String @id @default(cuid())
-
+  id      String  @id @default(cuid())
   guildId String
   userId  String
   isOwner Boolean
@@ -79,17 +81,21 @@ model GuildMember {
   guild         Guild         @relation(fields: [guildId], references: [id], onDelete: Cascade)
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   participantOf Participant[]
+  creatorOf     Mission[]
 
   @@index([guildId])
   @@index([userId])
 }
 
 model Mission {
-  id           String        @id @default(cuid())
-  name         String
-  description  String
-  guildId      String
+  id          String  @id @default(cuid())
+  name        String
+  guildId     String
+  creatorId   String
+  description String?
+
   guild        Guild         @relation(fields: [guildId], references: [id], onDelete: Cascade)
+  creator      GuildMember   @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   participants Participant[]
   roles        MissionRole[]
 
@@ -97,20 +103,19 @@ model Mission {
   updatedAt DateTime @default(now())
 
   @@index([guildId])
+  @@index([creatorId])
 }
 
 model Participant {
   id String @id @default(cuid())
 
-  missionId String
-  userId    String
-
-  mission       Mission      @relation(fields: [missionId], references: [id], onDelete: Cascade)
-  GuildMember   GuildMember? @relation(fields: [guildMemberId], references: [id])
+  missionId     String
   guildMemberId String?
 
+  mission     Mission      @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  guildMember GuildMember? @relation(fields: [guildMemberId], references: [id])
+
   @@index([missionId])
-  @@index([userId])
   @@index([guildMemberId])
 }
 

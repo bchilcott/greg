@@ -1,6 +1,7 @@
 import type { SlashCommand } from '~/commands/types';
-import Ping from './ping';
+import Create from './create';
+import Link from './link';
 
-const Commands: SlashCommand[] = [Ping];
+const Commands: SlashCommand[] = [Create, Link];
 
 export default Commands;

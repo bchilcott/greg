@@ -2,6 +2,8 @@ import type { Guild } from '@prisma/client';
 import { z } from 'zod';
 
 import { createTRPCRouter, publicProcedure } from '../../server';
+import { createGuild } from '../service/guildService';
+import { getUserByDiscordId } from '../service/userService';
 import { createError, type APIError } from '../util/errors';
 
 type CreateGuildResponse = Promise<
@@ -28,41 +30,34 @@ export const guildRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }): CreateGuildResponse => {
-      const account = await ctx.prisma.account.findUnique({
-        where: {
-          provider_providerAccountId: {
-            providerAccountId: input.userDiscordId,
-            provider: 'discord',
-          },
-        },
-        select: { user: true },
-      });
+      const user = await getUserByDiscordId(input.userDiscordId);
 
-      if (!account) {
+      if (!user) {
         return {
           guild: null,
           error: createError(404, 'User not found'),
         };
       }
 
-      const guild = await ctx.prisma.guild.upsert({
+      const existing = await ctx.prisma.guild.findFirst({
         where: { discordId: input.guildDiscordId },
-        create: {
-          discordId: input.guildDiscordId,
-          members: {
-            create: {
-              user: {
-                connect: {
-                  id: account.user.id,
-                },
-              },
-              isOwner: true,
-            },
-          },
-        },
-        update: {},
       });
 
-      return { guild, error: null };
+      if (existing) {
+        return {
+          guild: null,
+          error: createError(409, 'Guild already exists'),
+        };
+      }
+
+      try {
+        const guild = await createGuild(input.guildDiscordId, user.id);
+        return { guild, error: null };
+      } catch (err) {
+        return {
+          guild: null,
+          error: createError(500, 'Failed to create guild'),
+        };
+      }
     }),
 });
