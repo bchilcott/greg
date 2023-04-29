@@ -2,7 +2,6 @@ import Image from 'next/image';
 
 import DiscordSignIn from '~/components/index/DiscordSignIn';
 import Examples from '~/components/index/Examples';
-
 import eye from '~/assets/eye.svg';
 
 export default function Home() {

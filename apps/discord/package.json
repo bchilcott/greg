@@ -1,0 +1,29 @@
+{
+  "name": "@greg/discord",
+  "version": "0.1.0",
+  "description": "Discord component of the Greg mission planning app",
+  "main": "src/index.ts",
+  "repository": "https://github.com/bchilcott/greg",
+  "author": "Ben Chilcott",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "yarn with-env nodemon --watch src --exec ts-node src/index.ts",
+    "build": "tsc",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "discord.js": "^14.9.0"
+  },
+  "devDependencies": {
+    "@greg/eslint-config": "*",
+    "@types/node": "^18.15.13",
+    "dotenv-cli": "^7.2.1",
+    "eslint": "^8.38.0",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}

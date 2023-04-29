@@ -1,10 +1,12 @@
 import { createTRPCRouter } from '../server';
 import { authRouter } from './router/auth';
-import { postRouter } from './router/post';
+import { guildRouter } from './router/guild';
+import { missionRouter } from './router/mission';
 
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  guild: guildRouter,
   auth: authRouter,
+  mission: missionRouter,
 });
 
 // export type definition of API
