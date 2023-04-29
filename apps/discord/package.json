@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@greg/eslint-config": "*",
-    "@types/node": "^18.15.13",
+    "@types/node": "^18.16.2",
     "dotenv-cli": "^7.2.1",
     "eslint": "^8.38.0",
     "nodemon": "^2.0.22",
