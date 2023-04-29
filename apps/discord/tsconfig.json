@@ -6,6 +6,9 @@
     "paths": {
       "~/*": ["./src/*"]
     },
-    "module": "NodeNext"
+    "module": "NodeNext",
+    "outDir": "dist",
+    "rootDir": "src",
+    "noEmit": false
   },
 }
