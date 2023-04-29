@@ -7,7 +7,7 @@ export async function createGuild(
   const guild = await prisma.guild.upsert({
     where: { discordId: guildDiscordId },
     create: {
-      discordId: userId,
+      discordId: guildDiscordId,
       members: {
         create: {
           user: {
@@ -33,7 +33,7 @@ export async function getMemberByDiscordId(
     where: {
       user: {
         accounts: {
-          every: { providerAccountId: userDiscordId, provider: 'discord' },
+          some: { providerAccountId: userDiscordId, provider: 'discord' },
         },
       },
       guild: {

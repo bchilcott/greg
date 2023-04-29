@@ -18,10 +18,6 @@ type CreateMissionResponse = Promise<
 >;
 
 export const missionRouter = createTRPCRouter({
-  all: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.guild.findMany();
-  }),
-
   create: publicProcedure
     .input(
       z.object({
