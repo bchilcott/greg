@@ -14,8 +14,16 @@ body {
   .bg-home-body {
     background-image: linear-gradient(
       120deg,
-      theme("colors.gray.900"),
-      theme("colors.gray.950") 80%
+      theme('colors.gray.900'),
+      theme('colors.gray.950') 80%
+    );
+  }
+
+  .bg-dashboard-body {
+    background-image: linear-gradient(
+      315deg,
+      theme('colors.gray.900'),
+      theme('colors.gray.950') 80%
     );
   }
 }

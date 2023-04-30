@@ -13,7 +13,7 @@ export default function DiscordSignIn() {
         onClick={
           session
             ? () => void signOut()
-            : () => void signIn('discord', { callbackUrl: '/' })
+            : () => void signIn('discord', { callbackUrl: '/dashboard' })
         }
       >
         <span className="flex items-center gap-2">
